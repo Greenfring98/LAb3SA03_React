@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import _ from 'lodash';
 import CharacterCard from './CharacterCard';
+import cat1 from './cat.png'
 
- 
-let message = 'Hello'
+
+let message = 'cat'
  
 const prepareStateFromWord = (given_word) => {
   let word = given_word.toUpperCase()
@@ -31,8 +32,8 @@ class App extends React.Component {
   activationHandler = (c) => {
     let guess = [...this.state.guess, c]
     this.setState({ guess })
-    if (guess.length == this.state.chars.length) {
-      if (guess.join('').toString() == this.state.word) {
+    if (guess.length === this.state.chars.length) {
+      if (guess.join('').toString() === this.state.word) {
         this.setState({ guess: [], completed: true })
       } else {
         this.setState({ guess: [], attempt: this.state.attempt + 1 })
@@ -42,7 +43,12 @@ class App extends React.Component {
  
   render() {
     return (
+      <center>
       <div>
+        <h3>CARD-GAME BY 6035512067 NATTHAPON CHUAISENG SECTION 01</h3>
+        <div>
+        <img src={cat1} width="300" height="350" />
+        </div>
         {
           Array.from(this.state.chars).map((item, index) => (
             <CharacterCard
@@ -64,8 +70,10 @@ class App extends React.Component {
               activationHandler={this.activationHandler}
             />
           ))
-        }
-        <div>Attemp {this.state.attempt}</div>
+        }  
+
+     
+        <div>Round {this.state.attempt}</div>
         {
           this.state.completed && <h4>Complete</h4>
         }
@@ -74,9 +82,8 @@ class App extends React.Component {
         }
         
       </div>
-     
+      </center>
     )
   }
 }
- 
 export default App
